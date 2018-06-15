@@ -15,8 +15,8 @@ go_bin=$(go_static_builder) go
 all: container
 
 container: deps/bin/dinit
-        docker build --tag=$(user)/$(app):$(version) .
-        # docker tag $(user)/$(app):$(version) $(user)/$(app):latest
+	docker build --tag=$(user)/$(app):$(version) .
+	# docker tag $(user)/$(app):$(version) $(user)/$(app):latest
 
 push:
 	docker push $(user)/$(app):$(version)
@@ -30,6 +30,9 @@ deps:
 	mkdir -p deps
 
 deps/bin/dinit: deps
-        $(go_bin) get -v -a -tags netgo -installsuffix netgo github.com/miekg/dinit
+	$(go_bin) get -v -a -tags netgo -installsuffix netgo github.com/miekg/dinit
 
+clean:
+	rm -fr deps
 
+.PHONY: all container push push-latest push-all clean
