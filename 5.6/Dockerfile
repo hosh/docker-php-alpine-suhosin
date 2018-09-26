@@ -32,4 +32,4 @@ RUN \
     rm /tmp/suhosin-$SUHOSIN_VERSION.tar.gz && \
     rm -rf /tmp/suhosin-$SUHOSIN_VERSION && \
 
-    apk del .build-deps && \
+    apk del .build-deps \
